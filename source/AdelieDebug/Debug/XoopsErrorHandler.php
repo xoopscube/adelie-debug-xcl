@@ -20,7 +20,7 @@ if ( $reflectionMethod->isStatic() === true )
 			// 親のコンストラクタの処理を封じる
 		}
 
-		public static function getInstance()
+		public static function &getInstance()
 		{
 			static $instance = null;
 

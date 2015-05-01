@@ -7,6 +7,7 @@
 		<{else}>
 			<span style="font-size: 12px;">(Source)</sapn>
 		<{/if}>
+		<span style="font-size: 12px;"> <{if $isAdmin}>Admin<{else}>Safe<{/if}> mode</sapn>
 	</p>
 	<p class="h2">Errors</p>
 	<{foreach from=$errorSummary key="typeName" item="ids"}>
@@ -50,26 +51,33 @@
 				<td style="width: 10px;"><{$log.ms}></td>
 				<td><{$log.typeName}></td>
 				<td>
+					<{if $isAdmin}>
+						<{assign var="message" value=$log.message}>
+						<{assign var="info" value=$log.info}>
+					<{else}>
+						<{assign var="message" value=$log.message|replace:$sourceDir:'(adelie)'|replace:$htmlDir:'(html)'|replace:$trustDir:'(trust)'|replace:$sqlPrefix:'(prefix)'}>
+						<{assign var="info" value=$log.info|replace:$sourceDir:'(adelie)'|replace:$htmlDir:'(html)'|replace:$trustDir:'(trust)'|replace:$sqlPrefix:'(prefix)'}>
+					<{/if}>
 					<{if $log.typeName == 'DUMP'}>
-						<{$log.message}>
+						<{$message}>
 					<{elseif $log.typeName == 'SYNOPSYS'}>
-						<{$log.message}>
+						<{$message}>
 					<{elseif $log.typeName == 'DELEGATE'}>
-						<div style="font-size:12px;"><{$log.message|escape}></div>
+						<div style="font-size:12px;"><{$message|escape}></div>
 					<{elseif $log.typeName == 'SQL'}>
 						<{strip}>
 						<pre class="info <{$log.typeName}>" style="position:relative;">
 							<div style="height: 100%; width: <{$log.timePer}>%; background: #c8d9ab; position: absolute; top: 0; left: 0;"></div><{* TODO >> move to css *}>
-							<div style="position: relative; "><{$log.message|escape}></div>
+							<div style="position: relative; "><{$message|escape}></div>
 						</pre>
 						<{/strip}>
 						<{if $log.info}>
-							<pre><{$log.info|escape}></pre>
+							<pre><{$info|escape}></pre>
 						<{/if}>
 					<{else}>
-						<pre class="info <{$log.typeName}>"><{$log.message|escape}></pre>
+						<pre class="info <{$log.typeName}>"><{$message|escape}></pre>
 						<{if $log.info}>
-							<pre><{$log.info|escape}></pre>
+							<pre><{$info|escape}></pre>
 						<{/if}>
 					<{/if}>
 				</td>
@@ -91,22 +99,24 @@
 	<p class="h2">Requests</p>
 	<div id="adelieDebugRequest">
 		<{foreach from=$requests key="name" item="request"}>
-			<p class="h3"><{$name}></p>
-			<{if $request}>
-				<table class="data">
-					<tr>
-						<th>Key</th>
-						<th>Value</th>
-					</tr>
-					<{foreach from=$request key="key" item="value"}>
+			<{if $isAdmin || ($name != '$_SERVER' && $name != '$_SESSION')}>
+				<p class="h3"><{$name}></p>
+				<{if $request}>
+					<table class="data">
 						<tr>
-							<td><{$key}></td>
-							<td><{$value|@var_dump}></td>
+							<th>Key</th>
+							<th>Value</th>
 						</tr>
-					<{/foreach}>
-				</table>
-			<{else}>
-				<p>There is no values.</p>
+						<{foreach from=$request key="key" item="value"}>
+							<tr>
+								<td><{$key}></td>
+								<td><{$value|@var_dump}></td>
+							</tr>
+						<{/foreach}>
+					</table>
+				<{else}>
+					<p>There is no values.</p>
+				<{/if}>
 			<{/if}>
 		<{/foreach}>
 	</div>
