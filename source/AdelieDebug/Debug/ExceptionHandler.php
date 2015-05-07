@@ -9,7 +9,7 @@
  *
  */
 
-class AdelieDebug_Debug_ExceptionHandler
+class AdelieDebug_Debug_ExceptionHandler_Abstract
 {
 	protected $logger = null;
 
@@ -22,9 +22,26 @@ class AdelieDebug_Debug_ExceptionHandler
 	{
 		set_exception_handler(array($this, 'catchException'));
 	}
+}
 
-	public function catchException(Exception $exception)
+if (class_exists('BaseException')) {
+
+	class AdelieDebug_Debug_ExceptionHandler extends AdelieDebug_Debug_ExceptionHandler_Abstract
 	{
-		$this->logger->addPhpError(strval($exception));
+		public function catchException(BaseException $exception)
+		{
+			$this->logger->addPhpError(strval($exception));
+		}
 	}
+
+} else {
+
+	class AdelieDebug_Debug_ExceptionHandler extends AdelieDebug_Debug_ExceptionHandler_Abstract
+	{
+		public function catchException(Exception $exception)
+		{
+			$this->logger->addPhpError(strval($exception));
+		}
+	}
+
 }
