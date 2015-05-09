@@ -53,8 +53,13 @@ class AdelieDebug_Debug_Main
 			error_reporting(-1);
 		}
 
-		ini_set('log_errors', true);
-		ini_set('display_errors', true);
+		ini_set('log_errors', defined('ADELIE_DEBUG_LOG_ERRORS')? ADELIE_DEBUG_LOG_ERRORS : true);
+		ini_set('display_errors', defined('ADELIE_DEBUG_DISPLAY_ERRORS')? ADELIE_DEBUG_DISPLAY_ERRORS : false);
+
+		if ( defined('ADELIE_DEBUG_ERROR_LOG') )
+		{
+			ini_set('error_log', ADELIE_DEBUG_ERROR_LOG);
+		}
 	}
 
 	protected function _setUp()
