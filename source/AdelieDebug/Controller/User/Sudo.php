@@ -46,12 +46,12 @@ class AdelieDebug_Controller_User_Sudo extends AdelieDebug_Controller
 		
 		if ( count($userModels) !== 1 )
 		{
-			throw new RuntimeException("ユーザが見つかりません。");
+			throw new RuntimeException("User not found.");
 		}
 		
 		if ( $userModels[0]->get('level') == 0 )
 		{
-			throw new RuntimeException("未承認のユーザです。");
+			throw new RuntimeException("Unauthorized user.");
 		}
 
 		$handler =& xoops_gethandler('user');
@@ -71,12 +71,12 @@ class AdelieDebug_Controller_User_Sudo extends AdelieDebug_Controller
 
 		if ( count($userModels) !== 1 )
 		{
-			throw new RuntimeException("ユーザが見つかりません。");
+			throw new RuntimeException("User not found.");
 		}
 		
 		if ( $userModels[0]->get('level') == 0 )
 		{
-			throw new RuntimeException("未承認のユーザです。");
+			throw new RuntimeException("Unauthorized user.");
 		}
 
 		$handler =& xoops_gethandler('user');

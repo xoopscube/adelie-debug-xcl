@@ -55,7 +55,7 @@ class AdelieDebug_Controller_Report_Index extends AdelieDebug_Controller
 	{
 		if ( $this->app->parameter('via') === null )
 		{
-			throw new RuntimeException("予期せぬアクセス方法です。");
+			throw new RuntimeException("Unexpected access.");
 		}
 	}
 

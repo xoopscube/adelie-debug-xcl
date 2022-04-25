@@ -67,7 +67,7 @@ class AdelieDebug_Debug_Main
 		$this->_setUpLogger();
 		$this->_setUpErrorHandler();
 		$this->_setUpExceptionHandler();
-		$this->_setUpReporter(); // シャットダウン時にReporterをnewすると既にメモリが足りなくなっている可能性があるため予めメモリを確保しておく
+		$this->_setUpReporter(); // If the Reporter is renewed at shutdown, it may have already run out of memory, so reserve memory in advance.
 		$this->_setUpShutdown();
 		$this->_setUpFunctions();
 //		$this->_setUpDelegateManagerProxy();
@@ -92,7 +92,7 @@ class AdelieDebug_Debug_Main
 
 	protected function _setUpReporter()
 	{
-		$this->reporter = new AdelieDebug_Debug_Reporter_Html($this->logger); // TODO >> リポータの種類を設定できるようにする
+		$this->reporter = new AdelieDebug_Debug_Reporter_Html($this->logger); // TODO >> Allow setting of reporter type
 		$this->reporter->setUp();
 	}
 

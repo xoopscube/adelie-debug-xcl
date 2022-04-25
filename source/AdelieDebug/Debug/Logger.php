@@ -54,7 +54,7 @@ class AdelieDebug_Debug_Logger
 	}
 
 	/**
-	 * エラーの概要を返す.
+	 * Returns an error summary.
 	 * @return array
 	 */
 	public function getErrorSummary()
@@ -103,7 +103,7 @@ class AdelieDebug_Debug_Logger
 
 	public function addSql($message, $info = '')
 	{
-		$this->add($message, 8, false, $info); // Database Sessionでエラーになるため定数を使わない。
+		$this->add($message, 8, false, $info); // Do not use constants because they cause errors in Database Session.
 	}
 
 	public function addSqlError($message, $error, $trace)

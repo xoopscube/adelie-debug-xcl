@@ -30,7 +30,7 @@ class AdelieDebug_Debug_Reporter_Html extends AdelieDebug_Debug_Reporter
 
 	protected function _printContents()
 	{
-		// TODO >> メモリ足りないときは素でvar_dump()する
+		// TODO >> If there is not enough memory, var_dump() is used for the bare minimum.
 		$application = new AdelieDebug_Application();
 		$application->setPathinfo('/debug/report');
 		$application->setParameter('logger', $this->logger);

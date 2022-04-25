@@ -39,7 +39,7 @@ class AdelieDebug_Debug_Dump
 	protected static function _dump_html($called, $values)
 	{
 		ob_start();
-		echo '<pre style="border:1px dotted #000; font-size:12px; color:#000; background:#fff; font-family:"Times New Roman",Georgia,Serif;">';
+		echo '<pre style="border:1px dotted #000; font-size:12px; color:#000; background:#fff; font-family: Menlo, Monaco, Consolas, Courier New, monospace;">';
 		echo $called;
 		echo '<div style="text-align:left;">';
 		array_map('var_dump', $values);

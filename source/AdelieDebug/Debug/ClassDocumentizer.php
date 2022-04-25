@@ -371,7 +371,7 @@ class AdelieDebug_Debug_ClassDocumentizer extends ReflectionClass
 		if ( count($constants) > 0 )
 		{
 			$lines[] = '';
-			$lines[] = $indent.'/* 定数 */';
+			$lines[] = $indent.'/* constant */';
 
 			foreach ( $constants as $constant )
 			{
@@ -382,7 +382,7 @@ class AdelieDebug_Debug_ClassDocumentizer extends ReflectionClass
 		if ( count($properties) > 0 )
 		{
 			$lines[] = '';
-			$lines[] = $indent.'/* プロパティ */';
+			$lines[] = $indent.'/* Properties */';
 
 			foreach ( $properties as $property )
 			{
@@ -393,7 +393,7 @@ class AdelieDebug_Debug_ClassDocumentizer extends ReflectionClass
 		if ( count($methods['self']) > 0 )
 		{
 			$lines[] = '';
-			$lines[] = $indent.'/* メソッド */';
+			$lines[] = $indent.'/* Methods */';
 
 			foreach ( $methods['self'] as $method )
 			{
@@ -404,7 +404,7 @@ class AdelieDebug_Debug_ClassDocumentizer extends ReflectionClass
 		if ( count($methods['parent']) > 0 )
 		{
 			$lines[] = '';
-			$lines[] = $indent.'/* 継承したメソッド */';
+			$lines[] = $indent.'/* Inherited Methods */';
 
 			foreach ( $methods['parent'] as $method )
 			{

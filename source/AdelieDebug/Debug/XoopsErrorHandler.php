@@ -17,9 +17,9 @@ if ( $reflectionMethod->isStatic() === true )
 	{
 		public function __construct()
 		{
-			// 親のコンストラクタの処理を封じる
+			// Block parent constructor processing
 		}
-
+		// must be compatible by & reference
 		public static function &getInstance()
 		{
 			static $instance = null;
@@ -44,7 +44,7 @@ else
 	{
 		public function __construct()
 		{
-			// 親のコンストラクタの処理を封じる
+			// Block parent constructor processing
 		}
 
 		public function &getInstance()

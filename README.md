@@ -1,85 +1,169 @@
-# AdelieDebug
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://github.com/xoopscube/xcl)
+![License GPL](https://img.shields.io/badge/License-GPL-green)
+![X-Updare Store](https://img.shields.io/badge/X--Update%20Store-Pending-red)
 
-XOOPS Cube Legacy でモジュール・プリロードなどを開発するデベロッパー向けのパワフルな開発支援ツールです。
+## ///// — Adelie Debug :: Debugging tool
 
-![](https://lh3.googleusercontent.com/-6eASUD-qeYk/TwaPZpHaY9I/AAAAAAAABno/GcZuarntiGM/s400/%2525E3%252582%2525B9%2525E3%252582%2525AF%2525E3%252583%2525AA%2525E3%252583%2525BC%2525E3%252583%2525B3%2525E3%252582%2525B7%2525E3%252583%2525A7%2525E3%252583%252583%2525E3%252583%252588%2525202012-01-06%25252014.14.33.png)
-
-## 特徴
-
-### 1.見やすいデバッグ画面
-
-* タイムライン表示: PHPやSQLのログをすべて、ひとつのタイムラインに集約。処理の前後関係を分かりやすくする工夫。
-* エラーをハイライト表示: SQLやPHPのエラーはハイライトで表示されるので視覚的。
-
-### 2.便利なデバッグ関数
-
-* adump(mixed[, mixed, ...]): var_dump()を preタグ で囲んで見やすくした上に、関数が何処に書かれているかまで表示。
-* atrace(): 処理経路をトレースします。関数がどこから呼ばれてるから一目瞭然。
-* awhich(object または class_name_string): クラスや関数がどのファイルの何行目で定義されているかを表示。
-* asynop(object または class_name_string): クラスの実装の概要を表示します。
-
-### 3.XOOPS Cube Legacyのためのツールであること
-
-* もう var_dump() のあとに exit() を付けたり、<{stdout}>をテーマに書く必要はありません。AdelieDebugはXOOPSのob_bufferを自動的に回避するからです。
-* XML出力画面にvar_dump()してしまって、Ajaxのテストがうまくできない、なんてことはありません。AdelieDebugはAJAXリクエストのときやHTML出力以外のコンテクストではデバッグ出力を自動でオフにします。
-
-### 4.実践で使われているツールであること
-
-* 開発者が仕事でモジュールを開発するときに使っているツールなのです。
-
-その他詳細な紹介は[XOOPS Cube & TOKYOPenでパワフルなデバッグツールAdelieDebug | Suinasia](http://suin.asia/2012/01/06/xoops-adelie-debug)を御覧ください。
+![alt text](https://repository-images.githubusercontent.com/8041553/494f183f-cd64-41b1-8ad7-4d9be8fdb)
 
 
-## 基本的な使い方
+PRELOAD | Adelie Debug
+------------ | -------------
+Description | Adelie Debug is a powerful development tool for XCL modules, preloads and themes developers
+Render Engine | Smarty v2
+Version | 2022
+Author | Update by @nao-pon Naoki Sawada (PHP7), @gigamaster Nuno Luciano (XCL7)
+Author | Original by Suin (suin.io)
+Copyright | 2011-2022 Authors
+License | GPL
 
-### インストール
 
-プリロード [AdelieDebug.class.php](https://raw.github.com/suin/xoops-adelie-debug/master/build/AdelieDebug.class.php) をあなたの XOOPS Cube の preload に置くだけです。
+##### :computer: The Minimum Requirements
 
-wgetでインストールする方法:
+
+
+          Apache, Nginx, etc. PHP 7.2.x
+          MySQL 5.6, MariaDB  InnoDB utf8 / utf8mb4
+          XCL version 2.3.+
+
+
+
+-----
+
+
+### Features :
+
+
+#### 1. Easy-to-read debug screen
+
+* Timeline display: All PHP and SQL logs are aggregated in one timeline.  
+  A device that makes it easier to understand the context of processing.
+* Highlight errors: SQL and PHP errors are highlighted so they are visual.
+
+
+### 2. Useful debug functions
+
+* adump (mixed [, mixed, ...]): Enclose var_dump () in a pre tag to make it easier to see,   
+  and even show where the function is written.
+* atrace (): Traces the processing path. It's obvious where the function is called.
+* awhich (object or class_name_string): Shows what line in which file a class or function is defined.
+* asynop (object or class_name_string): Shows an overview of the class implementation.
+
+
+### 3. Being a tool for XOOPS Cube Legacy
+
+* You no longer need to add exit () after var_dump () or write <{stdout}> for the theme.   
+  This is because AdelieDebug automatically bypasses the XOOPS ob_buffer.
+* There is no such thing as var_dump () on the XML output screen that makes Ajax testing unsuccessful.  
+  AdelieDebug automatically turns off debug output on AJAX requests and in contexts other than HTML output.
+
+### 4. Must be a tool used in practice
+
+* It's the tool developers use when developing modules at work.
+
+For more detailed introductions (Japanese) :  
+[XOOPS Cube & TOKYO Pen's powerful debugging tool AdelieDebug | @suin ] (https://suin.io/530).  
+[XOOPS で AdelieDebug利用中はリダイレクト停止させる | @RyujiAMANO ] (http://suin.asia/2012/01/06/xoops-adelie-debug).
+
+
+## Basic usage
+
+### install
+
+Just put the preload file **AdelieDebug.class.php** in the folder /html/preload/ 
+
+
+### How to install with wget:
 
 ```
 cd /path/to/your/xoopscube/html/preload
 wget https://raw.github.com/suin/xoops-adelie-debug/master/build/AdelieDebug.class.php
 ```
 
-### アンインストール
+### Uninstall
 
-不要になった場合は、このプリロードを削除します。
+When you no longer need it, just remove the file **AdelieDebug.class.php** from the folder /html/preload/
 
-## 設定
+## Setting
 
 ### ADELIE_DEBUG_ERROR_REPORTING
 
-定数 `ADELIE_DEBUG_ERROR_REPORTING` を `mainfile.php` にセットすることで、AdelieDebugのエラーレポーティングレベルを調整することができます。この定数がセットされていなければ、`error_reporting(-1)` になります。すなわち、すべてのエラーを通知します。
+You can adjust the error reporting level of AdelieDebug by setting   
+the constant `ADELIE_DEBUG_ERROR_REPORTING` in ` mainfile.php`   
+If this constant is not set, it will be `error_reporting (-1)`  
+That is, it notifies you of all errors.  
 
-この設定は通常は使用すべきではありません。しかし、XOOPS Cubeでは、PHP5.3以降の環境で非推奨エラーやストリクトエラーを数多く発生させます。この多数の重要でないエラーは重要なエラーを見えにくくします。そのような開発効率に多くな影響が出る場合に限り、`ADELIE_DEBUG_ERROR_REPORTING` を調整すべきです。
+This setting should not be used.  
+However, deprecation warnings and non-critical errors in legacy code of XOOPS2 modules   
+doesn't make it easier to see more serious errors in PHP7 and later.     
+You should adjust `ADELIE_DEBUG_ERROR_REPORTING` only if
+it has a significant impact on efficiency in PHP7 development environment.  
+
 
 ```
 	define('ADELIE_DEBUG_ERROR_REPORTING', E_ALL & ~E_DEPRECATED & ~E_STRICT);
 ```
 
-## コンパイル
 
-以下の情報は、AdelieDebug自体をカスタマイズしたい人にのみ関係します。
+## Compile
 
-### ソースコード
+The following information is only relevant to those who want to customize AdelieDebug itself.
 
-ビルド前のソースコードは source にあります。
-ビルド前開発時はシンボリックリンクを使うと便利です。
+### Source code
+
+The pre-build source code is in source.
+It is convenient to use symbolic links during pre-build development.
 
 ```
-ln -s ~/Projects/xoops-adelie-debug/source/AdelieDebug/Preload.php /var/www/html/preload/AdelieDebug_Preload.class.php
+ln -s ~/Projects/adelie-debug-xcl/source/AdelieDebug/Preload.php /var/www/html/preload/AdelieDebug_Preload.class.php
 ```
 
-### ビルド
 
-コマンドラインで php compile.php を叩くとビルドできます。
-ビルドには yuicompressor が必要です。~/bin/yuicompressor-2.4.6.jar に置いてください。
+And everything should run just fine.
+
+### Build
+
+You can build it by running this on the command line :  
+```
+# php compile.php
+```
+The latest version of yuicompressor is placed in ~ /bin/yuicompressor-2.4.8.jar  
+In case of issues with path, change the config to build with 2.4.7.jar  
 
 ## Tips
 
-### Smartyでadump()を使う
+### Use adump () with Smarty
 
-```<{$variable|@adump}>```のようにすると、テンプレートでも変数の中身をダンプすることができます。
+You can also dump the contents of a variable in a template :  
+```<{$ variable | @adump}>```
 
+### xContainer and xdesktop
+Depending on your app stack version, Virtual Machine or BootDocker,  
+both are running a customized debian distribution. Click "Open Shell"   
+and install the required update of Java :
+
+```
+# apt-get update
+```  
+Then install Java :
+```
+# apt-get install default-jre
+```  
+
+? **Successfully updated**  
+You will be prompt with a message of packages automatically installed   
+and those who are no longer required.  
+Use 'apt-get autoremove' to remove them.  
+You will be prompt with a message :  
+Do you want to continue? [Y/n]
+In the interactive prompts, press **Y** and enter.
+
+? **Error Message**
+
+if you get an error message, try this :
+```
+# export LD_LIBRARY_PATH=/usr/lib/
+# apt-get install openjdk-7-jre-headless
+```    
+  
+Have Fun ^_^/
