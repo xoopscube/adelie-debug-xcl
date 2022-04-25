@@ -40,7 +40,8 @@ class AdelieDebug_Controller_User_Sudo extends AdelieDebug_Controller
 		$userId = (int) $_POST['uid'];
 		
 		$userHandler =& xoops_getmodulehandler('users', 'user');
-		$criteria =& new CriteriaCompo();
+        $cc = new CriteriaCompo();
+        $criteria =& $cc;
 		$criteria->add(new Criteria('uid', $userId));
 		$userModels =& $userHandler->getObjects($criteria);
 		
@@ -65,7 +66,9 @@ class AdelieDebug_Controller_User_Sudo extends AdelieDebug_Controller
 		$userName = $_POST['uname'];
 
 		$userHandler =& xoops_getmodulehandler('users', 'user');
-		$criteria =& new CriteriaCompo();
+
+        $cc = new CriteriaCompo();
+        $criteria =& $cc;
 		$criteria->add(new Criteria('uname', $userName));
 		$userModels =& $userHandler->getObjects($criteria);
 
