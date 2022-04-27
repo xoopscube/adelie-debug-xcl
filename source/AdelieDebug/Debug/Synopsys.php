@@ -16,7 +16,10 @@ class AdelieDebug_Debug_Synopsys
 		self::$logger = $logger;
 	}
 
-	public function synopsys($object, $highlight = true, $minus = 1)
+    /**
+     * @throws ReflectionException
+     */
+    public function synopsys($object, $highlight = true, $minus = 1)
 	{
 		if ( is_object($object) === false and is_string($object) === false )
 		{
@@ -35,15 +38,15 @@ class AdelieDebug_Debug_Synopsys
 			{
 				$documentizer = new AdelieDebug_Debug_ClassDocumentizer($object);
 				$document = $documentizer->documentize();
-		
+
 				if ( $highlight === true )
 				{
 					$document = highlight_string('<?php '.$document, true);
 					$document = str_replace('&lt;?php&nbsp;', '', $document);
 				}
-		
+
 				$document = AdelieDebug_Debug_Trace::getCalled($minus - 1).$document;
-		
+
 				self::$logger->addSynopsys($document);
 			}
 		}

@@ -161,7 +161,7 @@ class AdelieDebugCompiler_Application
 
 		$filename = 'build/'.$preloadClass.'.class.php';
 		$writtenBytes = file_put_contents($filename, $this->source);
-		
+
 		if ( $writtenBytes === false )
 		{
 			throw new RuntimeException("Failed to write file: $filename");
@@ -180,7 +180,7 @@ class AdelieDebugCompiler_Application
 			throw new RuntimeException("Failed to write file: $filename");
 		}
 	}
-	
+
 	protected function _addDocComent()
 	{
 		$docComment = $this->_getDocComment();

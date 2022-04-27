@@ -28,7 +28,11 @@ function awhich($variable)
 	call_user_func(array('AdelieDebug_Debug_Dump', 'dumpbt'), 1, $result);
 }
 
+/**
+ * @throws ReflectionException
+ */
 function asynop($object, $highlight = true)
 {
-	AdelieDebug_Debug_Synopsys::synopsys($object, $highlight, 2);
+    // @gigamaster make call dynamic
+	(new AdelieDebug_Debug_Synopsys)->synopsys($object, $highlight, 2);
 }

@@ -29,8 +29,8 @@ class AdelieDebug_Controller_Report_Index extends AdelieDebug_Controller
 
 		$this->output['sentHeaders'] = headers_list();
 		$this->output['requests'] = array(
-			'$_GET'     => $_GET, 
-			'$_POST'    => $_POST, 
+			'$_GET'     => $_GET,
+			'$_POST'    => $_POST,
 			'$_SESSION' => $_SESSION,
 			'$_COOKIE'  => $_COOKIE,
 			'$_FILES'   => $_FILES,
@@ -39,10 +39,11 @@ class AdelieDebug_Controller_Report_Index extends AdelieDebug_Controller
 		$this->output['logs'] = $this->_getLogs();
 		$this->output['errorSummary'] = $this->logger->getErrorSummary();
 		$this->output['css'] = $this->app->fileGetContents('/File/css/report.css');
+        $this->output['js'] = $this->app->fileGetContents('/File/js/report.js');
 
 		$phpinfo = new AdelieDebug_Debug_PHPInfo();
 		$this->output['phpInfo'] = $phpinfo->summary();
-		
+
 		$this->_render();
 	}
 

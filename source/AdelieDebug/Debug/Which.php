@@ -49,7 +49,7 @@ class AdelieDebug_Debug_Which
 		if ( preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $string) > 0 )
 		{
 			$found = array();
-		
+
 			if ( class_exists($string) === true )
 			{
 				$found[] = $this->whichClass($string);
@@ -59,17 +59,17 @@ class AdelieDebug_Debug_Which
 			{
 				$found[] = $this->whichFunction($string);
 			}
-			
+
 			if ( defined($string) === true )
 			{
-				// 定数
+				// constant
 			}
-			
+
 			$found = implode("\n", $found);
-			
+
 			return $found;
 		}
-	
+
 		return false;
 	}
 
@@ -92,7 +92,10 @@ class AdelieDebug_Debug_Which
 		return sprintf("Class '%s' defined in %s at line %s", $class, $filename, $line);
 	}
 
-	public function whichFunction($function)
+    /**
+     * @throws ReflectionException
+     */
+    public function whichFunction($function)
 	{
 		$reflectionFunction = new ReflectionFunction($function);
 		$filename = $reflectionFunction->getFileName();

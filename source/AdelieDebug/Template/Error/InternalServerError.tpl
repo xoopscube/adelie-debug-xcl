@@ -1,2 +1,4 @@
-<h1><{$statusMessage}></h1>
-<pre><{$exception}></pre>
+<details>
+<summary><h2><{$statusMessage}></h2></summary>
+<div><pre><{$exception}></pre></div>
+</details>

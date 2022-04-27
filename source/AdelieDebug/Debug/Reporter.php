@@ -20,7 +20,7 @@ class AdelieDebug_Debug_Reporter
 
 	public function setUp()
 	{
-		// テンプレートメソッド
+		// Template method
 	}
 
 	public function report()

@@ -20,7 +20,7 @@ class AdelieDebug_Debug_Trace
 
 	public static function trace($minus = 0, $return = false)
 	{
-		// debug_print_backtrace()がメモリオーバーになる可能性があるので、例外のトレース機能を使う
+		// debug_print_backtrace() May be out of memory, so use the exception tracing feature
 		$exception = new Exception();
 		$trace = $exception->getTraceAsString();
 
@@ -47,14 +47,14 @@ class AdelieDebug_Debug_Trace
 			'file' => 'Unknown file',
 			'line' => 0,
 		);
-		
+
 		$traces = debug_backtrace();
 
 		if ( isset($traces[$level]) === true )
 		{
 			$trace = array_merge($trace, $traces[$level]);
 		}
-		
+
 		$called = sprintf("Called in %s on line %s", $trace['file'], $trace['line']);
 
 		if ( $html === true )

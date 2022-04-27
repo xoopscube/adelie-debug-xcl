@@ -23,7 +23,7 @@ abstract class AdelieDebug_Controller extends AdelieDebug_Core_Controller
 			'htmlDir'   => XOOPS_ROOT_PATH,
 			'trustDir'  => XOOPS_TRUST_PATH,
 			'sqlPrefix' => XOOPS_DB_PREFIX,
-			'sourceDir' => $isBuild? '' : dirname(dirname(__FILE__)),
+			'sourceDir' => $isBuild? '' : dirname(__FILE__, 2),
 		));
 	}
 }
