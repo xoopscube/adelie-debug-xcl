@@ -4,8 +4,10 @@
 
 ## ///// — Adelie Debug :: Debugging tool
 
-![alt text](https://repository-images.githubusercontent.com/8041553/494f183f-cd64-41b1-8ad7-4d9be8fdb)
+![alt text](https://repository-images.githubusercontent.com/485308409/7da19feb-cc5b-43ae-bf66-6d8d24c9a2b7)
+  
 
+---
 
 PRELOAD | Adelie Debug
 ------------ | -------------
