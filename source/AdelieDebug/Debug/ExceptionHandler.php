@@ -38,7 +38,9 @@ if (class_exists('BaseException')) {
 
 	class AdelieDebug_Debug_ExceptionHandler extends AdelieDebug_Debug_ExceptionHandler_Abstract
 	{
-		public function catchException(Exception $exception)
+		// #3 @gigamaster replaced Exception with Throwable
+        public function catchException(\Throwable $exception)
+
 		{
 			$this->logger->addPhpError(strval($exception));
 		}

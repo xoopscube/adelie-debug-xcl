@@ -34,5 +34,7 @@ function awhich($variable)
 function asynop($object, $highlight = true)
 {
     // @gigamaster make call dynamic
+	// AdelieDebug_Debug_Synopsys::synopsys($object, $highlight, 2);
 	(new AdelieDebug_Debug_Synopsys)->synopsys($object, $highlight, 2);
+	
 }

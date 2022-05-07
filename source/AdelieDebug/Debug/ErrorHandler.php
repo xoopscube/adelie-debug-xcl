@@ -122,8 +122,9 @@ class AdelieDebug_Debug_ErrorHandler
 
 	protected function _setUpErrorTypes()
 	{
-		$this->errorTypes[E_DEPRECATED]      = 'DEPRECATED';
-		$this->errorTypes[E_USER_DEPRECATED] = 'USER_DEPRECATED';
+		$this->errorTypes[E_RECOVERABLE_ERROR] = 'RECOVERABLE ERROR';
+		$this->errorTypes[E_DEPRECATED]        = 'DEPRECATED';
+		$this->errorTypes[E_USER_DEPRECATED]   = 'USER_DEPRECATED';
 	}
 
 	protected function _getFormatedError(array $error, $format = "{type}: {message} in {file} on line {line}")

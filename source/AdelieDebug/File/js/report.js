@@ -1,44 +1,54 @@
-// jQuery functions for AdelieDebug
-$(function() {
+// xHelp functions for AdelieDebug
+function animateSlider(hash) {
+    if (!$("#xhelp-main div.xhelp-open").length) {
+        if (hash == "#adelie") {
+            openPopup(hash);
+        }
+        if (hash == "#kint") {
+            openPopup(hash);
+        }
+    } else {
+        if (hash == "#adelie") {
+            openAndClose(hash)
+        }
+        if (hash == "#kint") {
+            openAndClose(hash)
+        }
+    }
+}
+function openPopup(hash) {
+    $(hash + "_view").slideToggle().addClass("xhelp-open");
+}
+function openAndClose(hash) {
+    if ($(hash + "_view").hasClass("xhelp-open")) {
+        $($(hash + "_view")).slideToggle().removeClass();
+    } else {
+        $("#xhelp-main div.xhelp-open").slideToggle().removeClass();
+        $(hash + "_view").slideToggle().addClass("xhelp-open");
+    }
+}
+function renameElement($element,newElement){
+    $element.wrap("<"+newElement+">");
+    $newElement = $element.parent();
+    //Copying Attributes
+    $.each($element.prop('attributes'), function() {
+        $newElement.attr(this.name,this.value);
+    });
+    $element.contents().unwrap();
+    return $newElement;
+}
 
-    $("#xhelper-menu a").click(function(e) {
+// xHelp View Control
+$(function() {
+    $("#xhelp-menu a, #close-view").click(function(e) {
         e.preventDefault();
         animateSlider(this.hash);
     });
-
-    function animateSlider(hash) {
-        if (!$("#xhelper-main div.xhelper-open").length) {
-            if (hash == "#adelie") {
-                openPopup(hash);
-            }
-            if (hash == "#kint") {
-                openPopup(hash);
-            }
-        } else {
-            if (hash == "#adelie") {
-                openAndClose(hash)
-            }
-            if (hash == "#kint") {
-                openAndClose(hash)
-            }
-        }
-    }
-    function openPopup(hash) {
-        $(hash + "_view").slideToggle().addClass("xhelper-open");
-    }
-    function openAndClose(hash) {
-        if ($(hash + "_view").hasClass("xhelper-open")) {
-            $($(hash + "_view")).slideToggle().removeClass();
-        } else {
-            $("#xhelper-main div.xhelper-open").slideToggle().removeClass();
-            $(hash + "_view").slideToggle().addClass("xhelper-open");
-        }
-    }
-
     // view control
     $("#minimize").hide();
+    // maximize
     var p = $('#adelie_view').position();
-    $("#maximize").bind("click", function (e) {
+    $("#maximize").click(function (e) {
         e.preventDefault();
         $("#adelie_view").animate({
             width: $(window).width(),
@@ -51,7 +61,8 @@ $(function() {
         $("#maximize").hide(100);
         $("#minimize").show(100);
     });
-    $("#minimize").bind("click", function (e) {
+    // minimize
+    $("#minimize").click(function (e) {
         e.preventDefault();
         $('#adelie_view').css({
             "position": "fixed",
@@ -66,63 +77,26 @@ $(function() {
         $("#maximize").show(100);
         $("#minimize").hide(100);
     });
-
-    // About
-
 });
 
-// About
-
-$( function() {
-    // Declare the initial dialog outside any event
-    var $dialog = $('#dialogAbout');
-
-    $dialog.dialog({
-        autoOpen: false,
-        closeText: "hide",
-        dialogClass: "dialogCredits",
-        closeOnEscape: true,
-        // buttons: {
-        //     "Close": function () {
-        //         $(this).dialog("close")
-        //     }
-        // },
-        position: {
-            my: "left top",
-            at: "left center",
-            of: "#about" },
-        resizable: false,
-        show: {
-            effect: "blind",
-            duration: 350
-        },
-        hide: {
-            effect: "blind",
-            duration: 350
-        },
-        classes: {
-            "ui-dialog":"dialogCredits",
-            "ui-dialog-titlebar":"dialogAboutTitle",
-            "ui-dialog-titlebar-close":"dialogAboutClose",
-        },
-
-    }).removeClass("ui-button-icon-only");
-
-    // Append the HTML and open the dialog
-    $( "#about" ).on( "click", function() {
-        //$dialog.html("<br><a id='modalClose'>CloseMe</a>");
-        $dialog.dialog( "open" );
-    });
-
-    // Bind the click event that closes the modal
-    $("body").on('click', '.dialogAboutClose', function (e) {
-        // prevent the default action, e.g., following a link
+// xHelp Panel Scroll
+$(function () {
+    // Open Details and Scroll to Error Id
+    $('.errorId').click(function(e){
+        var id= $(this).prop("hash");
+        // Open details
+        renameElement($('details.timeline'),'details open');
+        $('#adelieReport').animate({
+            scrollTop: $(id).offset().top - $(id).offsetParent().offset().top -20
+        }, 500);
         e.preventDefault();
-        // Need to close the Modal
-        $dialog.dialog('close');
+    });
+    // Click Error and Scroll to Top
+    $('.ERROR').click(function(e){
+        $('#adelieReport').animate({
+            scrollTop: $('#adelieReport').offset().top - $('#adelieReport').offsetParent().offset().top -20
+        }, 500);
+        e.preventDefault();
     });
 
-
-} );
-
-
+});

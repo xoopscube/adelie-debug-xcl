@@ -1,21 +1,20 @@
 <script type="text/javascript">
     if (typeof jQuery == 'undefined') {
-        // Fallback for CDN in case of Fatal error: Uncaught TypeError
+        // Fallback for CDN in case of Fatal error!
     document.write(unescape("%3Cscript src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
 }
 </script>
 <style><{$css}></style>
-<script><{$js}></script>
 
 
 <{* Capture Result and Total of Errors to show in the menu *}>
-<{capture name="inResult"}>
+<{capture name="adeResult"}>
 <{foreach from=$errorSummary key="typeName" item="ids"}>
     <div class="msgError">
-        <strong><{$typeName}> [ <{capture name="inError"}><{$ids|@count}><{/capture}><{$smarty.capture.inError}> ]</strong>
+        <strong><{$typeName}> [ <{capture name="adeError"}><{$ids|@count}><{/capture}><{$smarty.capture.adeError}> ]</strong>
         <span>...</span>
         <{foreach from=$ids item="id"}>
-        <a href="#adelieDebugLogId<{$id}>" style="margin: 10px;" onclick="javascript:document.getElementById('adelieDebugDetail').style.display='block'">#<{$id}></a>
+        <a href="#adelieDebugLogId<{$id}>" class="errorId">#<{$id}></a>
         <{/foreach}>
     </div>
     <{foreachelse}>
@@ -24,10 +23,10 @@
 <{/capture}>
 
 
-<div id="xhelper-main">
+<div id="xhelp-main">
 
-    <div id="xhelper-menu">
-        <a href="#adelie">Adelie Debug <{if $smarty.capture.inError ne ""}><span><{$smarty.capture.inError}></span><{/if}></a>
+    <div id="xhelp-menu">
+        <a href="#adelie">AdelieDebug <{if $smarty.capture.adeError ne ""}><span><{$smarty.capture.adeError}></span><{/if}></a>
         <a href="#kint">Kint</a>
     </div>
 
@@ -37,46 +36,41 @@
         <div id="viewTitle">
 
             <div class="title">
-                Adelie Debug - <small> <{if $isAdmin}>Admin<{else}>Safe<{/if}> mode</small>
+            <a href="#xhelp-about" aria-label="About AdelieDebug">ℹ — AdelieDebug</a> — <small> <{if $isAdmin}>Admin<{else}>Safe<{/if}> mode</small>
             </div>
 
             <div id="viewControl">
-                <button id="about" aria-label="send email"><svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9a9 9 0 0 0-9-9Zm0 16.5a7.5 7.5 0 1 1 7.5-7.5a7.5 7.5 0 0 1-7.5 7.5Z"/><path fill="currentColor" d="M9.7 7.7a3.25 3.25 0 0 0-.95 2.3a.75.75 0 0 0 1.5 0a1.74 1.74 0 0 1 .51-1.24a1.8 1.8 0 0 1 2.48 0a1.75 1.75 0 0 1-1.24 3a.76.76 0 0 0-.75.75v1a.75.75 0 0 0 1.5 0v-.34a3.19 3.19 0 0 0 1.55-.86a3.26 3.26 0 0 0 0-4.6a3.34 3.34 0 0 0-4.6-.01Z"/><circle cx="12" cy="16.25" r="1.25" fill="currentColor"/></svg></button>
-                <button id="maximize" aria-label="send email"><svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M18 20.75h-6a.75.75 0 0 1 0-1.5h6A1.25 1.25 0 0 0 19.25 18V6A1.25 1.25 0 0 0 18 4.75H6A1.25 1.25 0 0 0 4.75 6v6a.75.75 0 0 1-1.5 0V6A2.75 2.75 0 0 1 6 3.25h12A2.75 2.75 0 0 1 20.75 6v12A2.75 2.75 0 0 1 18 20.75Z"/><path fill="currentColor" d="M16 12.75a.76.76 0 0 1-.75-.75V8.75H12a.75.75 0 0 1 0-1.5h4a.76.76 0 0 1 .75.75v4a.76.76 0 0 1-.75.75Z"/><path fill="currentColor" d="M11.5 13.25A.74.74 0 0 1 11 13a.75.75 0 0 1 0-1l4.5-4.5a.75.75 0 0 1 1.06 1.06L12 13a.74.74 0 0 1-.5.25ZM8 20.75H5A1.76 1.76 0 0 1 3.25 19v-3A1.76 1.76 0 0 1 5 14.25h3A1.76 1.76 0 0 1 9.75 16v3A1.76 1.76 0 0 1 8 20.75Zm-3-5a.25.25 0 0 0-.25.25v3a.25.25 0 0 0 .25.25h3a.25.25 0 0 0 .25-.25v-3a.25.25 0 0 0-.25-.25Z"/></svg></button>
-                <button id="minimize" aria-label="send email"><svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M18 3.25H6A2.75 2.75 0 0 0 3.25 6v6a.75.75 0 0 0 1.5 0V6A1.25 1.25 0 0 1 6 4.75h12A1.25 1.25 0 0 1 19.25 6v12A1.25 1.25 0 0 1 18 19.25h-6a.75.75 0 0 0 0 1.5h6A2.75 2.75 0 0 0 20.75 18V6A2.75 2.75 0 0 0 18 3.25Z"/><path fill="currentColor" d="M11.21 13.19a.75.75 0 0 0 .29.06h4a.75.75 0 0 0 0-1.5h-2.19l3.22-3.22a.75.75 0 0 0-1.06-1.06l-3.22 3.22V8.5a.75.75 0 0 0-1.5 0v4a.75.75 0 0 0 .06.29a.71.71 0 0 0 .4.4ZM8 14.25H5A1.76 1.76 0 0 0 3.25 16v3A1.76 1.76 0 0 0 5 20.75h3A1.76 1.76 0 0 0 9.75 19v-3A1.76 1.76 0 0 0 8 14.25ZM8.25 19a.25.25 0 0 1-.25.25H5a.25.25 0 0 1-.25-.25v-3a.25.25 0 0 1 .25-.25h3a.25.25 0 0 1 .25.25Z"/></svg></button>
+                <a href="#" id="maximize" aria-label="maximize">🗖</a>
+                <a href="#" id="minimize" aria-label="minimize">🗕</a>
+                <a href="#adelie" id="close-view" title="Close">🗙</a>
             </div>
 
         </div>
         <{* viewTitle *}>
 
-        <div class="adelieDebug">
+        <div class="adelieDebug" id="adelieReport">
 
-		<h4>Report</h4>
+		<h3>Report</h3>
 
-            <{$smarty.capture.inResult}>
+            <{$smarty.capture.adeResult}>
 
-        <p>
-        <a class="btnReport" onclick="javascript:document.getElementById('adelieDebugDetail').style.display='block'">
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="18px" height="18px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M12 14.5a.74.74 0 0 1-.53-.22L8 10.78a.75.75 0 0 1 1-1.06l3 3l3-3a.75.75 0 0 1 1 1.06l-3.5 3.5a.74.74 0 0 1-.5.22Z"/></svg>
-            open details </a>
-        <a class="btnReport" onclick="javascript:document.getElementById('adelieDebugDetail').style.display='none'">
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="18px" height="18px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14.5a.74.74 0 0 1-.53-.22l-3-3l-3 3A.75.75 0 0 1 8 13.22l3.5-3.5a.75.75 0 0 1 1.06 0l3.5 3.5a.75.75 0 0 1 0 1.06a.74.74 0 0 1-.56.22Z"/></svg>
-            close details </a>
-        </p>
 
-		<div style="display:none;" id="adelieDebugDetail">
+		<div id="adelieDebugDetail">
 
-           <details>
+           <details class="timeline">
            <summary><h3>Timeline</h3></summary>
 
             <div id="adelieDebugPhpErrors">
             <table class="data">
+            <thead>
                 <tr>
                     <th>ID</th>
                     <th>ms</th>
                     <th>Type</th>
                     <th>Message</th>
                 </tr>
+            </thead>
+            <tbody>
             <{foreach from=$logs item="log"}>
                 <tr>
                     <td style="width: 10px;" id="adelieDebugLogId<{$log.id}>"><{$log.id}></td>
@@ -99,8 +93,8 @@
                         <{elseif $log.typeName == 'SQL'}>
                             <{strip}>
                             <pre class="info <{$log.typeName}>" style="position:relative;">
-                                <div style="height: 100%; width: <{$log.timePer}>%; background:#375215;position:absolute;top:0;left:0;"></div><{* TODO >> move to css *}>
-                                <div style="position: relative; "><{$message|escape}></div>
+                                <div style="width: <{$log.timePer}>%;" class="logTime"></div>
+                                <div style="position: relative;"><{$message|escape}></div>
                             </pre>
                             <{/strip}>
                             <{if $log.info}>
@@ -115,6 +109,7 @@
                     </td>
                 </tr>
             <{/foreach}>
+            </tbody>
             </table>
             </div>
             </details>
@@ -143,16 +138,20 @@
                         <p class="h3"><{$name}></p>
                         <{if $request}>
                             <table class="data">
+                            <thead>
                                 <tr>
                                     <th>Key</th>
                                     <th>Value</th>
                                 </tr>
-                                <{foreach from=$request key="key" item="value"}>
+                            </thead>
+                            <tbody>
+                            <{foreach from=$request key="key" item="value"}>
                                     <tr>
                                         <td><{$key}></td>
                                         <td><{$value|@var_dump}></td>
                                     </tr>
                                 <{/foreach}>
+                            </tbody>
                             </table>
                         <{else}>
                             <p>There is no values.</p>
@@ -174,16 +173,20 @@
                 <div class="infoCat">
                 <{if $info}>
                     <table class="data">
+                    <thead>
                         <tr>
                             <th>Key</th>
                             <th>Value</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <{foreach from=$info key="key" item="value"}>
                         <tr>
                             <td><{$key}></td>
                             <td><{$value}></td>
                         </tr>
                         <{/foreach}>
+                    </tbody>
                     </table>
                     <{else}>
                         <p>There is no values.</p>
@@ -198,52 +201,70 @@
 
 
         </div>
-	    <{*  adelieDebugDetail  *}>
+	    <{* adelieDebugDetail  *}>
 
 		</div>
         <{*  adelieDebug  *}>
+
 
 	</div>
 	<{*  adelie_view  *}>
 
     <div id="kint_view">
+        <div class="kintDebug">
         <h1>Kint</h1>
         <{if file_exists("Kint.class.php")}>
             <{include file="Kint.class.php"}>
         <{else}>
-        <p>Kint is not installed!</p>
+        <div class="error">Kint is not installed!</div>
         <{/if}>
-    </div>
-
-    <div id="dialogAbout" title="About AdelieDebug">
-        <h4>AdelieDebug</h4>
-        <{if $isBuild}>
-        <span class="adelieVersion">Build <{'YmdHis'|date:$buildTime}></span>
-        <{else}>
-        <span class="adelieVersion">Source</span>
-        <{/if}>
-
-        <h4>Credits</h4>
-
-        <div class="adelieAuthor">Author Suin<br>
-        Update by Naon-pon (PHP7)<br>
-        Update by Gigamaster (XCL23)</div>
-
-        <h4>Cheat Sheet</h4>
-
-        <div class="adelieDebugHelp">
-            <span>adump([mixed[, mixed]])</span>
-            <span>atrace()</span>
-            <span>awhich(object|string)</span>
-            <span>asynop(object|string)</span>
-            <{*<span class="adelieDebugHelpMore"><a href="<{$xoops_url}>/index.php/debug/help/">more…</a></span>*}>
         </div>
-        <{*  adelieDebugHelp  *}>
-
     </div>
+
+
+    <div id="xhelp-about" class="xhelp-overlay" title="About AdelieDebug">
+    <div class="xhelp-modal">
+
+    <a class="xhelp-close" href="#">&times;</a>
+
+        <div class="xhelp-content">
+
+            <h2>Adelie<b>Debug</b></h2>
+
+            <{if $isBuild}>
+            <span class="data" title="AdelieDebug Version">Build <{'YmdHis'|date:$buildTime}></span>
+            <{else}>
+            <span class="data" title="adelieVersion">Source</span>
+            <{/if}>
+
+            <p>A powerful development tool for developers of XCL modules, preloads and themes — <a href="https://github.com/xoopscube/adelie-debug-xcl" target="_blank">License GPL v2.0</a></p>
+
+            <h3>Credits</h3>
+
+            <span class="data" title="AdelieDebug Authors">
+            Author Suin &copy; 2011<br>
+            Update by Naon-pon (PHP7)<br>
+            Update by Gigamaster (XCL23)
+            </span>
+
+            <h3>Cheat Sheet</h3>
+
+            <span class="data" title="AdelieDebug Help">
+                adump([mixed[, mixed]])<br>
+                atrace()<br>
+                awhich(object|string)<br>
+                asynop(object|string)
+                <{*<span class="adelieDebugHelp"><a href="<{$xoops_url}>/index.php/debug/help/">more…</a></span>*}>
+            </div>
+            <{*  adelieDebugHelp  *}>
+
+            </div><{* xhelp-content *}>
+
+        </div><{* xhelp-content *}>
+    </div><{* xhelp-modal *}>
 
 
 </div>
-<{*  xhelper-main  *}>
+<{*  xhelp-main  *}>
 
-
+<script><{$js}></script>

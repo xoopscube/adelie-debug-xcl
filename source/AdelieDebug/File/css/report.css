@@ -1,16 +1,15 @@
-#xhelper-main {
+#xhelp-main {
     bottom: 0;
     display: block;
     height: 40px;
     left: 0;
     margin: 0;
     position: fixed;
-    /*width: 300px;*/
     z-index: 2000;
 }
 
 /* ---------- BOTTOM MENU */
-#xhelper-menu {
+#xhelp-menu {
     align-items: center;
     background-image: linear-gradient(to top, #16191d 0%, #1b1e2b 100%);
     border-top-left-radius:5px;
@@ -18,34 +17,32 @@
     color:#eee;
     display: flex;
     filter: drop-shadow(0 0 0.5rem #1b1e2b);
-    font: normal small-caps 100 14px/24px sans-serif;
+    font: 14px sans-serif;
     height: 40px;
-    justify-content: center;
     padding:0 1em;
     text-transform: uppercase;
-    width: fit-content;
 }
-#xhelper-menu a,
-.btnReport {
+#xhelp-menu a {
     border-radius:5px;
-    color: #abc;
+    color: #fff;
     display: inline-block;
     margin: auto 0.25em;
     padding: 0.125em 0.5em;
     text-decoration:none;
 }
-#xhelper-menu a:hover {
-    background-color: #aa1e1e;
-    color: #fff;
-}
-#xhelper-menu a > span {
-    background: #1a1d23;
+#xhelp-menu a > span {
+    background: #aa1e1e;
     border-radius: 5px;
-    border: 1px solid #aa1e1e;
-    color: #aa1e1e;
+    border: 1px solid  #1a1d23;
     padding: 0 0.5em;
 }
-#xhelper-open {
+#xhelp-menu a:hover {
+    background: #aa1e1e;
+}
+#xhelp-menu a:hover > span {
+    background: #1a1d23;
+}
+#xhelp-open {
     display:inline-block;
     height:100%;
     width:100%;
@@ -55,17 +52,14 @@
 /* ---------- POP-UP */
 #adelie_view,
 #kint_view {
-    background-color: #1b1e2b;
-    border:1px solid #2e373b;
+    background: #171a27;
+    border:1px solid #123;
     bottom: 44px;
     box-sizing: border-box;
-    box-shadow: 5px 5px 5px 0 rgb(0 0 0 / 45%);
-    color: #abc;
-    direction: ltr;
+    box-shadow: 1px 5px 5px 0 #00000073;
     display: none;
     height: 400px;
     left: 0;
-    padding: 0;
     position: fixed;
     top: auto;
     width: 50vw;
@@ -74,9 +68,8 @@
 /* ---------- POP-UP TITLE */
 #viewTitle {
     align-items: center;
-    background: black;
-    border: 1px solid #111517;
-    color: #abc;
+    background: #111;
+    border: 1px solid #111;
     display: inline-flex;
     font-size: 16px;
     height: 32px;
@@ -86,22 +79,15 @@
     position: relative;
     width: 100%;
 }
-#viewTitle #viewControl button {
-    background: #101517;
-    border: 1px solid #202530;
-    color: #abc;
-    font-size: 20px;
-    margin: 0 0.5em;
-    padding: 0;
+#viewTitle #viewControl a {
+    font-size: 16px;
+    text-align: center;
+    padding: 2px;
+    margin-right: 0.5em;
 }
-#viewTitle #viewControl button:hover {
-    color: #fff;
-}
-
 
 /* ---------- POP-UP REPORT */
-.adelieDebug::-webkit-resizer {border-width:8px;border-style:solid;}
-.adelieDebug::-webkit-resizer {border-color:transparent #363e49 #242a33 transparent;}
+.adelieDebug::-webkit-resizer {border:8px solid transparent #363e49 #242a33 transparent;}
 /* width */
 .adelieDebug::-webkit-scrollbar {width:8px;height:auto}
 .adelieDebug::-webkit-scrollbar-button {display:none}
@@ -109,8 +95,7 @@
 .adelieDebug::-webkit-scrollbar-thumb {background:linear-gradient(145deg, #242a33, #3d4752);min-height:80px;border-radius:0}
 /* Handle on hover */
 /* Track */
-.adelieDebug::-webkit-scrollbar-track {border: 1px solid #363d49;border-radius: var(--border-radius);background:linear-gradient(145deg, #21242c, #1e242e);}
-
+.adelieDebug::-webkit-scrollbar-track {border: 1px solid #363d49;border-radius:5px;background:linear-gradient(145deg, #21242c, #1e242e);}
 
 .adelieDebug,
 .kintDebug {
@@ -119,50 +104,16 @@
     overflow-y: auto;
     padding:1em;
     width:100%;
+    /* Prevent Scrollbar Layout Shift */
+    scrollbar-gutter: stable both-edges;
     /* Firefox Scrollbar Thin */
     scrollbar-color: #414967 #1b1e2b;
     scrollbar-width: thin;
 }
-.kintDebug {
-    z-index: 2030;
-}
+.kintDebug {z-index: 2030;}
 
 .adelieDebug a {
-    color: #abc;
-}
-
-.adelieDebugHelp {
-    display:flex;
-    flex-wrap: wrap;
-}
-
-.adelieDebugHelp span,
-.adelieVersion,
-.adelieAuthor {
-    background: #1a1d23;
-    border-radius: 5px;
-    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    font-size: 13px;
-    padding: 1em;
-    margin: 0 0 1em;
-}
-
-span.adelieDebugHelpMore {
-    background-color: #202330;
-}
-span.adelieDebugHelpMore:hover {
-    background-color: #afc2ca;
-}
-span.adelieDebugHelpMore a {
-    color: #358ede;
-    display: block;
-    text-decoration: none;
-}
-span.adelieDebugHelpMore a:hover {
-    text-decoration: none;
-}
-
-.adelieDebug a {
+    color: #fff;
     cursor: pointer;
 }
 .adelieDebug h1,
@@ -173,105 +124,75 @@ span.adelieDebugHelpMore a:hover {
     font-weight: 300;
     text-transform: uppercase;
 }
-.adelieDebug p {
-    font-size: 15px;
-}
 
+/* ---------- TABLE DATA */
+.adelieDebug table.data {
+    border: 1px solid #121417;
+    box-shadow: 1px 1px 4px 4px #17191c;
+    border-collapse: collapse;
+    font-family: Menlo,Monaco,Consolas,monospace;
+    width: 100%;
+}
+.adelieDebug table.data thead tr {
+    background: #121416;
+}
+.adelieDebug table.data th,
+.adelieDebug table.data tbody td {
+    border-bottom: 1px solid #182739;
+    color: #fff;
+    padding: .5em;
+}
+.adelieDebug table.data tbody td:first-child {
+    width: 200px;
+}
+.adelieDebug table.data tbody tr:hover {
+    background: #1d232b;
+}
 
 /* ---------- PRE CONSOLE */
 .adelieDebug pre {
     border: 0;
-    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font: 13px Menlo, Monaco, Consolas, monospace;
     margin: 1px 0;
-    overflow: auto;
     overflow-wrap: break-word;
-    padding: 0.5em;
-    text-align: left;
+    text-shadow: 1px 1px #000;
     white-space: pre-wrap;
     word-break: break-all;
     word-wrap: break-word !important;
 }
 .adelieDebug pre.console {
-    background-color: hsl(228, 24%, 21%);
-    border: 1px solid hsl(224, 23%, 20%);
+    background-color: #16191d;
+    padding: 2em;
+    border: 1px solid #212830;
 }
-.adelieDebug pre.SQL,
+.adelieDebug pre.SQL .logTime{
+    background: #374d19;
+    background-image: repeating-linear-gradient(51deg, transparent, transparent 4px, #374d19 4px, #273612 8px);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 .adelieDebug pre.PHP {
     cursor: pointer;
 }
 .adelieDebug pre.info {
-    background: hsl(229, 20%, 20%);
-    color: hsl(84, 66%, 73%);
+    color: #c3e88d;
 }
 .adelieDebug pre.OVERLAP {
-    background: hsla(48, 97%, 85%, 0.5);
-    color: hsl(36, 100%, 31%);
+    background: #feefb480;
+    color: #9e5f00;
 }
 .adelieDebug pre.MARK {
     background-color: #292d3e;
     color: #00529b;
 }
 .adelieDebug pre.ERROR {
-    background: #741818;
-    color: #ffc107;
+    background: #9c2116;
+    color: #face74;
 }
 
-
-/* ---------- TABLE DATA */
-.adelieDebug table.data {
-    border: 1px solid #202127;
-    border-collapse: collapse;
-    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    width: 100%;
-}
-.adelieDebug table.data th {
-    /*background-color: #272d42;*/
-    /*border-top: 1px solid #202330;*/
-    /*border-right: 0;*/
-    border-bottom: 1px solid #202330;
-    /*border-left: none;*/
-    color: #fff;
-    /*font-weight: normal;*/
-    /*padding: 2px;*/
-    text-align: left;
-    padding: 5px 0;
-}
-.adelieDebug table.data td {
-    /*border: 1px solid #373d53;*/
-    padding: 4px 2px;
-}
-.adelieDebug table.data td:first-child {
-    width: 200px;
-}
-.adelieDebug table.data thead tr {
-    /*border-top: 1px solid #292d3e;*/
-}
-.adelieDebug table.data tbody tr {
-    border-bottom: 1px solid #2f3542;
-    /*background-color: #292d3e;*/
-}
-.adelieDebug table.data tbody tr:nth-child(even) {
-    /*background-color: #292d3e;*/
-}
-.adelieDebug table.data tbody tr:hover {
-    background-color: #2f3542; /* #292d3e */
-}
-.adelieDebug pre.expanded {
-    height: auto;
-    overflow-y: auto;
-    cursor: pointer;
-}
-.adelieDebug pre.shortened {
-    height: 1em;
-    overflow-y: hidden;
-    cursor: pointer;
-}
-.adelieDebug span.expandMore {
-    /*float: left;*/
-}
-
-
-/* Error dialog */
+/* ---------- Error dialog */
 .adelieDebug .msgInfo,
 .adelieDebug .msgSuccess,
 .adelieDebug .msgWarning,
@@ -279,10 +200,21 @@ span.adelieDebugHelpMore a:hover {
     background-color: #16191d;
     border: 1px solid;
     border-radius: 5px;
-    margin: 10px 5px;
-    padding: 5px 10px;
     font-size: 14px;
+    margin: 10px;
+    padding: 10px;
 }
+.adelieDebug .errorId {
+    border: 1px solid #aa1e1e;
+    border-radius: 5px;
+    margin: 0 0.5em;
+    padding: 0 .25em;
+}
+.adelieDebug .errorId.selected {
+    background: #aa1e1e;
+    border: 1px solid #1a1d23;
+}
+
 .adelieDebug .msgInfo {
     background-color: #bde5f8;
     color: #00529b;
@@ -299,19 +231,14 @@ span.adelieDebugHelpMore a:hover {
     border: 1px solid #aa1e1e;
     color: #ff9800;
 }
-.errorType,
 .errorCount {
     font-size: 14px;
-}
-.errorCount {
     background-color: #3b1d1f;
     color: #aa1e1e;
     font-weight: bold;
 }
 
-
 /* ---------- DETAILS SUMMARY */
-
 .adelieDebug details {
     animation-name: accordion-close;
     animation-duration: 0.4s;
@@ -321,52 +248,42 @@ span.adelieDebugHelpMore a:hover {
     overflow: hidden;
     transform-origin: top;
 }
-
 .adelieDebug details[open] {
-    animation-name: accordion-master;
+    animation-name: accordion-open;
     animation-duration: 0.3s;
     animation-timing-function: ease-in-out;
     transform-origin: top;
 }
-
-@keyframes accordion-master {
-    from {
-        max-height: 300px;
-    }
-    to {
-        max-height: 300px;
-    }
+@keyframes accordion-open {
+    from {max-height: 300px;}
+    to {max-height: 300px;}
 }
 @keyframes accordion-close {
-    from {
-        min-height: 300px;
-    }
-    to {
-        min-height: 56px;
-    }
+    from {min-height: 300px;}
+    to {min-height: 56px;}
 }
 .adelieDebug details summary {
-    background: #16191d;
+    background: #121821;
     border-radius: 7px;
     cursor: pointer;
     display: block;
     position: relative;
 }
 .adelieDebug details summary h3 {
-    margin: .125em .5em;
-    border-bottom: 1px solid #0f4e5e;
+    border-bottom: 1px solid #0d4859;
     font-size: 16px;
-    line-height: 2;
+    line-height: 1.5;
+    margin: .125em .5em;
+    padding: .5em;
 }
-
 .adelieDebug details summary:before {
     content: '';
     border-width: .4rem;
     border-style: solid;
     border-color: transparent transparent transparent #0cf;
     position: absolute;
-    top: 1.3rem;
-    right: 1rem;
+    top: 1em;
+    right: 1em;
     transform: rotate(90deg);
     transform-origin: .2rem 50%;
     transition: .25s transform ease;
@@ -397,22 +314,12 @@ span.adelieDebugHelpMore a:hover {
     transform-origin: top;
 }
 @keyframes accordion {
-    from {
-        transform: scaleY(0);
-        opacity: 0;
-    }
-    to {
-        transform: scaleY(1);
-        opacity: 1;
-    }
+    from {transform: scaleY(0);opacity: 0;}
+    to {transform: scaleY(1);opacity: 1;}
 }
 @keyframes accordion-content-close {
-    from {
-        margin-top: 0;
-    }
-    to {
-        margin-top: -300px;
-    }
+    from {margin-top: 0;}
+    to {margin-top: -300px;}
 }
 .adelieDebug details[open] > div {
     animation-name: accordion-content;
@@ -422,74 +329,87 @@ span.adelieDebugHelpMore a:hover {
     animation-fill-mode: forwards;
     opacity: 0;
 }
-
 @keyframes accordion-content {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 
-
-/* ---------- DIALOG ABOUT */
-#dialogAbout {
-    color: #abc;
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
+/* ---------- MODAL ABOUT */
+.xhelp-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000000b3;
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
 }
-#dialogAbout h4 {
-    font-size: 14px;
+.xhelp-overlay:target {
+    visibility: visible;
+    opacity: 1;
+    z-index: 4020;;
+}
+.xhelp-overlay:not(:target) {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s, visibility 1s;
+}
+.xhelp-modal {
+    background: hsl(220, 12%, 10%);
+    border: 1px solid #0d4859;
+    border-radius: 5px;
+    box-shadow: 4px 8px 12px 0 rgba(0, 0, 0, 0.8);
+    display:block;
+    min-height: 240px;
+    margin: 70px auto;
+    padding: 20px;
+    position: relative;
+    transition: all 5s ease-in-out;
+    overscroll-behavior: contain;
+    width:420px;
+}
+.xhelp-modal .xhelp-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #0cf;
+}
+.xhelp-modal .xhelp-close:hover {
+    color: #fff;
+}
+.xhelp-content {
+    display: contents;
+    height: 480px;
+    width: 400px;
+    overflow-y: auto;
+    scrollbar-color: #414967 #1b1e2b;
+    scrollbar-width: thin;
+}
+.xhelp-content h2,
+.xhelp-content h3 {
+    color:#0cf;
     text-transform: uppercase;
 }
-
-/*.dialogCredits,*/
-.dialogCredits.ui-widget.ui-widget-content{
-    background: #16181c;
-    border: 1px solid #202530;
-    z-index: 2040;
+.xhelp-content > h2 b {
+    color: #ff4227;
+    text-transform: capitalize
 }
-
-.dialogAboutTitle {
-    background: #101517;
-    border: 1px solid #202530;
-    color: #abc;
-    cursor: move;
-    font-weight: 100;
-    letter-spacing: 1px;
-    transform: rotate(270deg);
-    left: -130px;
-    width: 220px;
-    display: block;
-    top: 70px;
-    position: absolute;
-    /* https://caniuse.com/user-select-none */
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+.xhelp-content h3 {
+    font-size: 14px;
 }
-.dialogAboutClose,
-.ui-dialog-titlebar-close {
-    background: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"%3E%3Cpath fill="%23face74" d="M15.5 14.5a.74.74 0 0 1-.53-.22l-3-3l-3 3A.75.75 0 0 1 8 13.22l3.5-3.5a.75.75 0 0 1 1.06 0l3.5 3.5a.75.75 0 0 1 0 1.06a.74.74 0 0 1-.56.22Z"%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    border: 1px solid #aa1e1e;
-    position: absolute;
-    right: .3em;
-    top: 20%;
-    width: 24px;
-    margin: 0;
-    padding: 0;
-    height: 24px;
-}
-.dialogAboutClose:hover,
-.ui-dialog-titlebar-close:hover{
-    background:#aa1e1e;
-    color:#fff;
+.xhelp-content span.data {
+    background: #1a1d23;
+    border-radius: 5px;
+    display:block;
+    font-family: Menlo, Monaco, Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 1em;
+    margin: 1em 0;
 }
