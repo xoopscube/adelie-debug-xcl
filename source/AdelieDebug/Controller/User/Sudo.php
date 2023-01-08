@@ -40,18 +40,19 @@ class AdelieDebug_Controller_User_Sudo extends AdelieDebug_Controller
 		$userId = (int) $_POST['uid'];
 		
 		$userHandler =& xoops_getmodulehandler('users', 'user');
-		$criteria =& new CriteriaCompo();
+        $cc = new CriteriaCompo();
+        $criteria =& $cc;
 		$criteria->add(new Criteria('uid', $userId));
 		$userModels =& $userHandler->getObjects($criteria);
 		
 		if ( count($userModels) !== 1 )
 		{
-			throw new RuntimeException("ユーザが見つかりません。");
+			throw new RuntimeException("User not found.");
 		}
 		
 		if ( $userModels[0]->get('level') == 0 )
 		{
-			throw new RuntimeException("未承認のユーザです。");
+			throw new RuntimeException("Unauthorized user.");
 		}
 
 		$handler =& xoops_gethandler('user');
@@ -65,18 +66,20 @@ class AdelieDebug_Controller_User_Sudo extends AdelieDebug_Controller
 		$userName = $_POST['uname'];
 
 		$userHandler =& xoops_getmodulehandler('users', 'user');
-		$criteria =& new CriteriaCompo();
+
+        $cc = new CriteriaCompo();
+        $criteria =& $cc;
 		$criteria->add(new Criteria('uname', $userName));
 		$userModels =& $userHandler->getObjects($criteria);
 
 		if ( count($userModels) !== 1 )
 		{
-			throw new RuntimeException("ユーザが見つかりません。");
+			throw new RuntimeException("User not found.");
 		}
 		
 		if ( $userModels[0]->get('level') == 0 )
 		{
-			throw new RuntimeException("未承認のユーザです。");
+			throw new RuntimeException("Unauthorized user.");
 		}
 
 		$handler =& xoops_gethandler('user');

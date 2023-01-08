@@ -13,10 +13,17 @@ abstract class AdelieDebug_Controller extends AdelieDebug_Core_Controller
 {
 	protected function _getTemplateValues()
 	{
+		$root =& XCube_Root::getSingleton();
+		$isBuild = $this->app->isBuild();
 		return array_merge(parent::_getTemplateValues(), array(
 			'xoopsUrl'  => XOOPS_URL,
-			'isBuild'   => $this->app->isBuild(),
+			'isBuild'   => $isBuild,
 			'buildTime' => $this->app->getBuildTime(),
+			'isAdmin'   => $root->mContext->mUser->isInRole('Site.Administrator'),
+			'htmlDir'   => XOOPS_ROOT_PATH,
+			'trustDir'  => XOOPS_TRUST_PATH,
+			'sqlPrefix' => XOOPS_DB_PREFIX,
+			'sourceDir' => $isBuild? '' : dirname(__FILE__, 2),
 		));
 	}
 }

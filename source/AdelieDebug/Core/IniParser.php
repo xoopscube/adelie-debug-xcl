@@ -15,11 +15,6 @@ class AdelieDebug_Core_IniParser
 	{
 		$arguments = array($filename, true);
 
-		if ( version_compare(PHP_VERSION, '5.3', '<') and $mode !== null )
-		{
-			$arguments[] = $mode; // PHP5.3以上
-		}
-
 		return call_user_func_array('parse_ini_file', $arguments);
 	}
 }

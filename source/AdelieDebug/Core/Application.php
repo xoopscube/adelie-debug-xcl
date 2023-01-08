@@ -41,7 +41,7 @@ abstract class AdelieDebug_Core_Application
 
 	/**
 	 * setUp function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -56,7 +56,7 @@ abstract class AdelieDebug_Core_Application
 
 	/**
 	 * run function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -79,7 +79,7 @@ abstract class AdelieDebug_Core_Application
 
 	/**
 	 * getResult function.
-	 * 
+	 *
 	 * @access public
 	 * @return string
 	 */
@@ -90,7 +90,7 @@ abstract class AdelieDebug_Core_Application
 
 	/**
 	 * isDebug function.
-	 * 
+	 *
 	 * @access public
 	 * @return bool
 	 */
@@ -101,7 +101,7 @@ abstract class AdelieDebug_Core_Application
 
 	/**
 	 * config function.
-	 * 
+	 *
 	 * @access public
 	 * @param string $name
 	 * @return mixed
@@ -113,7 +113,7 @@ abstract class AdelieDebug_Core_Application
 
 	/**
 	 * parameter function.
-	 * 
+	 *
 	 * @access public
 	 * @param string $name
 	 * @param mixed $default (default: null)
@@ -131,7 +131,7 @@ abstract class AdelieDebug_Core_Application
 
 	/**
 	 * setParameter function.
-	 * 
+	 *
 	 * @access public
 	 * @param string $name
 	 * @param mixed $value
@@ -144,7 +144,7 @@ abstract class AdelieDebug_Core_Application
 
 	protected function _setUpConstant()
 	{
-		defined('ADELIE_DEBUG_DIR') or define('ADELIE_DEBUG_DIR', dirname(dirname(__FILE__)));
+		defined('ADELIE_DEBUG_DIR') or define('ADELIE_DEBUG_DIR', dirname(__FILE__, 2));
 	}
 
 	protected function _setUpConfig()
@@ -211,7 +211,7 @@ abstract class AdelieDebug_Core_Application
 		if ( class_exists($controllerClass) === false )
 		{
 			throw new AdelieDebug_Exception_NotFoundException('Class not found: '.$controllerClass);
-		} 
+		}
 
 		return $controllerClass;
 	}

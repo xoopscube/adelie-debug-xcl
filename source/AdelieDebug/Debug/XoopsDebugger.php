@@ -29,7 +29,10 @@ class AdelieDebug_Debug_XoopsDebugger extends Legacy_AbstractDebugger
 		$this->isDebugRenderSystem = true;
 	}
 
-	public function prepare()
+    /**
+     * @throws ReflectionException
+     */
+    public function prepare()
 	{
 		$GLOBALS['xoopsErrorHandler'] =& AdelieDebug_Debug_XoopsErrorHandler::getInstanceWrapper();
 		$GLOBALS['xoopsErrorHandler']->activate(false);

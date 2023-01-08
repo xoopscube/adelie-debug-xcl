@@ -16,7 +16,7 @@ class AdelieDebugCompiler_Application
 	protected $config = array(
 		'phpCommand'    => 'php',
 		'preloadClass'  => 'AdelieDebug',
-		'yuicompressor' => 'java -jar ~/bin/yuicompressor-2.4.6.jar',
+		'yuicompressor' => 'java -jar ~/bin/yuicompressor-2.4.7.jar',
 	);
 
 	protected $temporaryFileManager = null;
@@ -79,7 +79,7 @@ class AdelieDebugCompiler_Application
 	protected function _setUpPaths()
 	{
 		$this->dir       = dirname(__FILE__);
-		$this->targetDir = dirname(dirname(__FILE__)).'/AdelieDebug';
+		$this->targetDir = dirname(__FILE__, 2) .'/AdelieDebug';
 	}
 
 	protected function _setUpTemporaryFileManager()
@@ -161,7 +161,7 @@ class AdelieDebugCompiler_Application
 
 		$filename = 'build/'.$preloadClass.'.class.php';
 		$writtenBytes = file_put_contents($filename, $this->source);
-		
+
 		if ( $writtenBytes === false )
 		{
 			throw new RuntimeException("Failed to write file: $filename");
@@ -180,7 +180,7 @@ class AdelieDebugCompiler_Application
 			throw new RuntimeException("Failed to write file: $filename");
 		}
 	}
-	
+
 	protected function _addDocComent()
 	{
 		$docComment = $this->_getDocComment();
@@ -190,7 +190,7 @@ class AdelieDebugCompiler_Application
 	protected function _getDocComment()
 	{
 		$docComment  = "/**\n";
-		$docComment .= " * AdelieDebug - Powerful Debugger for XOOPS Cube Legacy & TOKYOPen\n";
+		$docComment .= " * AdelieDebug - Powerful Debugger for XOOPSCube Legacy v2.3\n";
 		$docComment .= " * Copyright 2011-".date('Y')." Suin\n";
 		$docComment .= " *\n";
 		$docComment .= " * AdelieDebug is distributed under the terms of the GPL2 license\n";
